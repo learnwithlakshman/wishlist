@@ -11,7 +11,6 @@ public class WishlistApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(WishlistApplication.class, args);
 	}
-	
 
 	@Override
 	protected WebApplicationContext run(SpringApplication application) {

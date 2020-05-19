@@ -1,25 +1,20 @@
 package com.lwl.wishlist.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
-import org.springframework.stereotype.Service;
+import com.lwl.wishlist.domain.Wishlist;
+import com.lwl.wishlist.domain.WishlistItem;
 
-import com.lwl.wishlist.UserDetailsUtil;
+public interface WishlistService {
 
-@Service
-public class WishlistService {
+	void createWishList(Wishlist wishList);
 
+	Set<String> getWishLists();
+
+	void addItemToWishList(String wishListName, WishlistItem item);
 	
-	private Map<String,Map<String,List<String>>> map = new HashMap<String, Map<String,List<String>>>();
+	List<WishlistItem> getWishListItems(String wishListName);
 	
-	public void addWishlist(String wlName) {
-			String username = UserDetailsUtil.getUserName();
-			System.out.println("User name :"+username);
-	}
-	public void getWishlist() {
-		String username = UserDetailsUtil.getUserName();
-		System.out.println("User name :"+username);
-	}
+
 }
