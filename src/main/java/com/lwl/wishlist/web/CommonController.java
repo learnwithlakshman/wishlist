@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CommonController {
 	
-	@GetMapping
+	@GetMapping("/")
 	public String redirect() {
 		return "redirect:wl/home";
 	}
