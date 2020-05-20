@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" session="false"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +53,7 @@
 			<h4 class="text mt-2">Your Wishlists</h4>
 				<ul>
 					<c:forEach items="${wishlists}" var="wl">
-						<li>${wl}</li>
+						<li>${wl} <a href="/wl/wlitems?wl=${wl}">View</a></li>
 					</c:forEach>
 
 				</ul>
@@ -73,20 +74,20 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form method="post">
+								<form:form method="post" modelAttribute="wishlist" action="/wl/cwl">
 									<div class="form-group">
-										<label for="wlname">WishList Name</label> <input type="text"
-											class="form-control" id="wlname" name="wlname">
+										<label for="wlname">WishList Name</label> <form:input path="name" type="text"
+											class="form-control" id="wlname" name="wlname" />
 									</div>
 									<div class="form-group">
-										<label for="wldesc">Description</label> <input type="text"
-											class="form-control" id="wldesc" name="wldesc">
+										<label for="wldesc">Description</label> <form:input path="description" type="text"
+											class="form-control" id="wldesc" name="wldesc" />
 									</div>
 
 									<button type="submit" class="btn btn-primary">Add</button>
 									<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Close</button>
-								</form>
+								</form:form>
 							</div>
 							
 						</div>

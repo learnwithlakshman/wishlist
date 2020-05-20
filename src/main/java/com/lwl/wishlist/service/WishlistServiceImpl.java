@@ -25,8 +25,6 @@ public class WishlistServiceImpl implements WishlistService {
 		userName = UserDetailsUtil.getUserName();
 		Map<String, List<WishlistItem>> userMap = map.get(userName);
 		List<WishlistItem> list = new ArrayList<>();
-		WishlistItem wlt = new WishlistItem(101, "Buy OnePlus", "--", "OnePlus 9T", Status.PENDING);
-		list.add(wlt);
 		if (userMap != null) {
 			userMap.put(wishList.getName(), list);
 		} else {
@@ -48,13 +46,21 @@ public class WishlistServiceImpl implements WishlistService {
 
 	@Override
 	public void addItemToWishList(String wishListName, WishlistItem item) {
-		// TODO Auto-generated method stub
-
+		Map<String, List<WishlistItem>> userMap = map.get(userName);
+		List<WishlistItem> items = userMap.get(wishListName);
+		if (item != null) {
+			items.add(item);
+			userMap.put(wishListName, items);
+		}
 	}
 
 	@Override
 	public List<WishlistItem> getWishListItems(String wishListName) {
-		// TODO Auto-generated method stub
+		userName = UserDetailsUtil.getUserName();
+		Map<String, List<WishlistItem>> userMap = map.get(userName);
+		if (userMap != null) {
+			return userMap.get(wishListName);
+		}
 		return null;
 	}
 }
