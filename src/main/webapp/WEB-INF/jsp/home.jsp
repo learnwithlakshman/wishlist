@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" session="false"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +12,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -31,7 +32,7 @@
 					href="#">Profile</a> <a class="nav-item nav-link" href="#">Account</a>
 			</div>
 			<div class="navbar-nav ml-auto">
-				<a class="nav-item nav-link" href="#">Logout</a>
+				<a class="nav-item nav-link" href="/logout">Logout</a>
 			</div>
 		</div>
 	</nav>
@@ -48,15 +49,33 @@
 
 		<div class="row">
 			<div class="col-md-5">
-			<button type="button" class="btn btn-primary" data-toggle="modal"
-				data-target="#exampleModal">Add New WishList</button>
-			<h4 class="text mt-2">Your Wishlists</h4>
-				<ul>
-					<c:forEach items="${wishlists}" var="wl">
-						<li>${wl} <a href="/wl/wlitems?wl=${wl}">View</a></li>
-					</c:forEach>
-
-				</ul>
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#exampleModal">Add New WishList</button>
+				<h4 class="text mt-2">Your Wishlists</h4>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Name</th>
+							<th scope="col">Description</th>
+							<th scope="col">View</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${wishlists}" var="wl">
+							<tr>
+								<th scope="row">${wl.id}</th>
+								<td>${wl.wlname}</td>
+								<td>${wl.desc}</td>
+								<td><a href="/wl/wlitems?refid=${wl.id}">View</a></td>
+								<td><a href="/wl/edit?id=${wl.id}"><i class='fa fa-edit'></a></td>
+								<td><a href="/wl/delete?id=${wl.id}"><i class='fa fa-trash'></a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
 			<div class="col-md-5">
 				<!-- Modal -->
@@ -74,22 +93,25 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form:form method="post" modelAttribute="wishlist" action="/wl/cwl">
+								<form:form method="post" modelAttribute="wishlist"
+									action="/wl/cwl">
 									<div class="form-group">
-										<label for="wlname">WishList Name</label> <form:input path="name" type="text"
-											class="form-control" id="wlname" name="wlname" />
+										<label for="wlname">WishList Name</label>
+										<form:input path="name" type="text" class="form-control"
+											id="wlname" name="wlname" />
 									</div>
 									<div class="form-group">
-										<label for="wldesc">Description</label> <form:input path="description" type="text"
+										<label for="wldesc">Description</label>
+										<form:input path="description" type="text"
 											class="form-control" id="wldesc" name="wldesc" />
 									</div>
 
 									<button type="submit" class="btn btn-primary">Add</button>
 									<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">Close</button>
+										data-dismiss="modal">Close</button>
 								</form:form>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>

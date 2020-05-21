@@ -12,6 +12,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -29,7 +30,7 @@
 					href="#">Profile</a> <a class="nav-item nav-link" href="#">Account</a>
 			</div>
 			<div class="navbar-nav ml-auto">
-				<a class="nav-item nav-link" href="#">Logout</a>
+				<a class="nav-item nav-link" href="/logout">Logout</a>
 			</div>
 		</div>
 	</nav>
@@ -41,8 +42,9 @@
 					data-toggle="modal" data-target="#exampleModal">Add New
 					Item</button>
 			</div>
-			<div class="col-md-5 mt-2">
-				<h4>Wishlist Name: ${wlname}</h4>
+			<div class="col-md-8 mt-2">
+				<h4>Wishlist Name: ${wl.name}</h4>
+				<h5>Wishlist Description: ${wl.description}</h5>
 				<table class="table">
 					<thead>
 						<tr>
@@ -59,12 +61,15 @@
 								<th>${item.description}</th>
 								<th>${item.link}</th>
 								<th>${item.status}</th>
+
+								<td><a href="/wl/edititem?wid=${item.id}"><i class='fa fa-edit '></a></td>
+								<td><a href="/wl/deleteitem?wid=${item.id}"><i class='fa fa-trash'></a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-1">
 
 				<div class="modal fade" id="exampleModal" tabindex="-1"
 					role="dialog" aria-labelledby="exampleModalLabel"

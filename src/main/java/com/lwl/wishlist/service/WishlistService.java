@@ -1,20 +1,32 @@
 package com.lwl.wishlist.service;
 
 import java.util.List;
-import java.util.Set;
 
 import com.lwl.wishlist.domain.Wishlist;
 import com.lwl.wishlist.domain.WishlistItem;
+import com.lwl.wishlist.dto.WishListDTO;
+import com.lwl.wishlist.dto.WishListItemDTO;
 
-public interface WishlistService {
+public interface WishListService {
 
 	void createWishList(Wishlist wishList);
 
-	Set<String> getWishLists();
+	Wishlist getWishList(int id);
 
-	void addItemToWishList(String wishListName, WishlistItem item);
-	
-	List<WishlistItem> getWishListItems(String wishListName);
-	
+	void updateWishList(Wishlist wishList, int id);
+
+	List<WishListDTO> getWishLists();
+
+	void deleteWishList(int id);
+
+	void addItemToWishList(WishlistItem item);
+
+	WishlistItem getWishListItem(int id);
+
+	List<WishListItemDTO> getWishListItems(int id);
+
+	void updateWishListItem(WishlistItem item, int id);
+
+	void deleteWishListItem(int id);
 
 }
